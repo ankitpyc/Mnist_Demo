@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Handwritten Digit Recognition using Convolutional Neural Networks</title>
+	<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+		<h1 style="
+    margin-top: 0px;
+    padding: 10px;
+    background: #565656;
+    color: white;
+    font-weight: 500;
+">Digit Recognition using Convolutional Neural Networks</h1>
+
+		<div class="centered">
+			<canvas id="canvas" width="280" height="280"></canvas>
+		</div>
+
+		<div class="centered">
+			<input style="
+    box-shadow: none;
+    border: 0px;
+    width: 200px;
+    height: 40px;
+    display: block;
+    margin: auto;
+    border-radius: 300px;
+    background: #626871;
+    color: white;
+    font-size: medium;
+" type="button" class="myButton" value="Predict" style="">
+			<input style="
+    box-shadow: none;
+    border: 1px solid #dfdfdf;
+    width: 200px;
+    height: 40px;
+    display: block;
+    margin: auto;
+    border-radius: 47px;
+    color: #130808;
+    font-size: medium;
+    background: none;
+    margin-top: 1%;
+" type="button" id="clearButton" value="Clear" style="">
+		</div>
+
+		<div class="centered">
+			<h1 id="result"></h1>
+		</div>
+
+		
+  		<script src="{{url_for('static',filename='jquery-3.2.0.min.js')}}"></script>
+	    <script src="{{url_for('static',filename='index.js')}}"></script>
+	    <script type="text/javascript">   
+	   		$(".myButton").click(function(){
+	   			$('#result').text('  Predicting...');
+	   			var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+	   			var canvasObj = document.getElementById("canvas");
+	   			var img = canvasObj.toDataURL('image/png');
+	   			$.ajax({
+	   				type: "POST",
+	   				url: $SCRIPT_ROOT + "/predict/",
+	   				data: img,
+	   				success: function(data){
+	   					$('#result').text('Predicted Output: ' + data);
+	   				}
+	   			});
+	   		});
+	   </script>
+</body>
+</html>
