@@ -8,5 +8,5 @@ The App is developed using [Tensorflow](https://www.tensorflow.org/https://www.t
 
 
 
-A working Demo of  the App can be seen [here]htttps://ankitpyc-mnist.herokuapp.com/)
+A working Demo of  the App can be seen [here](htttps://ankitpyc-mnist.herokuapp.com/)
 
